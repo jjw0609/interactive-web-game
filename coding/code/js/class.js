@@ -33,4 +33,13 @@ class Hero {
 
         this.el.parentNode.style.transform = `translateX(${this.movex}px)`;
     }
+
+    position() {
+        return {
+            left: this.el.getBoundingClientRect().left,
+            right: this.el.getBoundingClientRect().right,
+            top: gameProp.screenHeight - this.el.getBoundingClientRect().top,
+            bottom: gameProp.screenHeight - this.el.getBoundingClientRect().top - this.el.getBoundingClientRect().height
+        }
+    }
 }
