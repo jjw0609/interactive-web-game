@@ -7,15 +7,18 @@ const key = {
     }
 }
 
+const renderGame = () => {
+    hero.keyMotion();
+    window.requestAnimationFrame(renderGame);
+}
+
 const windowEvent = () => {
     window.addEventListener('keydown', e => {
         key.keyDown[key.keyValue[e.which]] = true;
-        hero.keyMotion();
     });
 
     window.addEventListener('keyup', e => {
         key.keyDown[key.keyValue[e.which]] = false;
-        hero.keyMotion();
     });
 }
 
@@ -37,6 +40,7 @@ const init = () => {
     hero = new Hero('.hero');
     loadImg();
     windowEvent();
+    renderGame();
 }
 
 window.onload = () => {

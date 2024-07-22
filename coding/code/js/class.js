@@ -1,6 +1,8 @@
 class Hero {
     constructor(el) {
         this.el = document.querySelector(el);
+        this.movex = 0;
+        this.speed = 16;
     }
 
     keyMotion() {
@@ -8,10 +10,13 @@ class Hero {
             this.el.classList.add('run');
             this.el.classList.add('flip');
 
+            this.movex = this.movex - this.speed;
+
         } else if(key.keyDown['right']) {
             this.el.classList.add('run');
             this.el.classList.remove('flip');
 
+            this.movex = this.movex + this.speed;
         }
 
         if(key.keyDown['attack']) {
@@ -25,5 +30,7 @@ class Hero {
         if(!key.keyDown['attack']) {
             this.el.classList.remove('attack');
         }
+
+        this.el.parentNode.style.transform = `translateX(${this.movex}px)`;
     }
 }
