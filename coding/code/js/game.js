@@ -19,10 +19,23 @@ const windowEvent = () => {
     });
 }
 
+const loadImg = () => {
+    const preLoadImgSrc = [
+        '../../lib/images/ninja_attack.png',
+        '../../lib/images/ninja_run.png'
+    ];
+
+    preLoadImgSrc.forEach(arr => {
+        const img = new Image();
+        img.src = arr;
+    })
+}
+
 let hero;
 
 const init = () => {
     hero = new Hero('.hero');
+    loadImg();
     windowEvent();
 }
 
