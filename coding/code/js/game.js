@@ -7,6 +7,11 @@ const key = {
     }
 }
 
+const bulletComProp = {
+    launch: false,
+    arr: []
+};
+
 const gameProp = {
     screenWidth: window.innerWidth,
     screenHeight: window.innerHeight
@@ -14,6 +19,10 @@ const gameProp = {
 
 const renderGame = () => {
     hero.keyMotion();
+
+    bulletComProp.arr.forEach((arr, i) => {
+        arr.moveBullet();
+    })
     window.requestAnimationFrame(renderGame);
 }
 
