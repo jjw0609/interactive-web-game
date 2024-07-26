@@ -3,16 +3,21 @@ class Hero {
         this.el = document.querySelector(el);
         this.movex = 0;
         this.speed = 16;
+        this.direction = 'right';
     }
 
     keyMotion() {
         if(key.keyDown['left']) {
+            this.direction = 'left';
+
             this.el.classList.add('run');
             this.el.classList.add('flip');
 
             this.movex = this.movex - this.speed;
 
         } else if(key.keyDown['right']) {
+            this.direction = 'right';
+
             this.el.classList.add('run');
             this.el.classList.remove('flip');
 
@@ -66,10 +71,12 @@ class Bullet {
         this.y = 0;
         this.speed = 30;
         this.distance = 0;
+        this.bulletDirection = 'right';
         this.init();
     }
 
     init() {
+        this.bulletDirection = hero.direction === 'left' ? 'left' : 'right';
         this.x = hero.position().left + hero.size().width / 2;
         this.y = hero.position().bottom - hero.size().height / 2;
         this.distance = this.x;
@@ -79,8 +86,18 @@ class Bullet {
     }
 
     moveBullet() {
-        this.distance += this.speed;
-        this.el.style.transform = `translate(${this.distance}px)`;
+        let setRotate = '';
+
+        if(this.bulletDirection === 'left') {
+            this.distance -= this.speed;
+            setRotate = 'rotate(180deg)';
+
+        } else {
+            this.distance += this.speed;
+
+        }
+
+        this.el.style.transform = `translate(${this.distance}px) ${setRotate}`;
 
         this.crashBullet();
     }
