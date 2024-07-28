@@ -12,6 +12,10 @@ const bulletComProp = {
     arr: []
 };
 
+const gameBackground = {
+    gameBox: document.querySelector('.game')
+}
+
 const gameProp = {
     screenWidth: window.innerWidth,
     screenHeight: window.innerHeight
@@ -19,11 +23,18 @@ const gameProp = {
 
 const renderGame = () => {
     hero.keyMotion();
+    setGameBackground();
 
     bulletComProp.arr.forEach((arr, i) => {
         arr.moveBullet();
     })
     window.requestAnimationFrame(renderGame);
+}
+
+const setGameBackground = () => {
+    let parallaxValue = Math.min(0, (hero.movex - gameProp.screenWidth / 3) * -1);
+
+    gameBackground.gameBox.style.transform = `translateX(${parallaxValue}px)`;
 }
 
 const windowEvent = () => {
