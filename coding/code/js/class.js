@@ -98,7 +98,7 @@ class Bullet {
 
         }
 
-        this.el.style.transform = `translate(${this.distance}px) ${setRotate}`;
+        this.el.style.transform = `translate(${this.distance}px, ${this.y}px) ${setRotate}`;
 
         this.crashBullet();
     }
@@ -117,5 +117,4 @@ class Bullet {
             this.el.remove();
         }
     }
-
 }

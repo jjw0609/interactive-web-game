@@ -54,8 +54,8 @@ const windowEvent = () => {
 
 const loadImg = () => {
     const preLoadImgSrc = [
-        '../../lib/images/ninja_attack.png',
-        '../../lib/images/ninja_run.png'
+        '../../../lib/images/ninja_attack.png',
+        '../../../lib/images/ninja_run.png'
     ];
 
     preLoadImgSrc.forEach(arr => {
