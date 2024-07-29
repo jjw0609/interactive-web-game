@@ -2,7 +2,7 @@ class Hero {
     constructor(el) {
         this.el = document.querySelector(el);
         this.movex = 0;
-        this.speed = 16;
+        this.speed = 11;
         this.direction = 'right';
     }
 
