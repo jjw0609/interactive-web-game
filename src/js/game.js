@@ -1,4 +1,6 @@
-const key = {
+import {Hero, Monster} from "./class";
+
+export const key = {
     keyDown: {},
     keyValue: {
         37: 'left',
@@ -7,7 +9,7 @@ const key = {
     }
 }
 
-const bulletComProp = {
+export const bulletComProp = {
     launch: false,
     arr: []
 };
@@ -16,7 +18,7 @@ const gameBackground = {
     gameBox: document.querySelector('.game')
 }
 
-const gameProp = {
+export const gameProp = {
     screenWidth: window.innerWidth,
     screenHeight: window.innerHeight
 };
@@ -64,7 +66,7 @@ const loadImg = () => {
     })
 }
 
-let hero;
+export let hero;
 let monster;
 
 const init = () => {

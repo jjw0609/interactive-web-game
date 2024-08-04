@@ -1,4 +1,6 @@
-class Hero {
+import {bulletComProp, gameProp, hero, key} from "./game";
+
+export class Hero {
     constructor(el) {
         this.el = document.querySelector(el);
         this.movex = 0;
@@ -62,7 +64,7 @@ class Hero {
     }
 }
 
-class Bullet {
+export class Bullet {
     constructor() {
         this.parentNode = document.querySelector('.game');
         this.el = document.createElement('div');
@@ -120,7 +122,7 @@ class Bullet {
 }
 
 
-class Monster {
+export class Monster {
     constructor() {
         this.parentNode = document.querySelector('.game');
         this.el = document.createElement('div');
