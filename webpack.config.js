@@ -76,8 +76,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
             patterns: [
-                { from: "./src/css", to: "./css" },
-                { from: "./lib/css", to: "./lib/css" },
+                { from: "./src/css", to: "./css" }
             ],
         })
     ]
