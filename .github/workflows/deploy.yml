@@ -2,9 +2,9 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [gh-pages]
   pull_request:
-    branches: [main]
+    branches: [gh-pages]
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -25,5 +25,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
+          PUBLISH_BRANCH: main
           publish_dir: ./dist
