@@ -1,4 +1,4 @@
-import {Hero, Monster} from "./class";
+import {Hero, Monster} from "./class.js";
 
 export const key = {
     keyDown: {},
@@ -67,7 +67,7 @@ const loadImg = () => {
 }
 
 export let hero;
-let monster;
+export let monster;
 
 const init = () => {
     hero = new Hero('.hero');

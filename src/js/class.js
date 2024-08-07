@@ -1,4 +1,4 @@
-import {bulletComProp, gameProp, hero, key} from "./game";
+import {bulletComProp, gameProp, hero, key, monster} from "./game.js";
 
 export class Hero {
     constructor(el) {
@@ -115,8 +115,22 @@ export class Bullet {
     }
 
     crashBullet() {
+        if(this.position().left > monster.position().left && this.position().right < monster.position().right) {
+            for(let i=0 ; i<bulletComProp.arr.length; i++) {
+                if(bulletComProp.arr[i] === this) {
+                    bulletComProp.arr.splice(i, 1);
+                    this.el.remove();
+                }
+            }
+        }
+
         if(this.position().left > gameProp.screenWidth || this.position().right < 0) {
-            this.el.remove();
+            for(let i=0 ; i<bulletComProp.arr.length; i++) {
+                if(bulletComProp.arr[i] === this) {
+                    bulletComProp.arr.splice(i, 1);
+                    this.el.remove();
+                }
+            }
         }
     }
 }
@@ -135,5 +149,14 @@ export class Monster {
     init() {
         this.el.appendChild(this.elChildren);
         this.parentNode.appendChild(this.el);
+    }
+
+    position() {
+        return {
+            left: this.el.getBoundingClientRect().left,
+            right: this.el.getBoundingClientRect().right,
+            top: gameProp.screenHeight - this.el.getBoundingClientRect().top,
+            bottom: gameProp.screenHeight - this.el.getBoundingClientRect().top - this.el.getBoundingClientRect().height
+        }
     }
 }
