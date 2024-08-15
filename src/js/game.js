@@ -71,7 +71,7 @@ export let monster;
 
 const init = () => {
     hero = new Hero('.hero');
-    monster = new Monster();
+    monster = new Monster(500, 9000);
     loadImg();
     windowEvent();
     renderGame();
