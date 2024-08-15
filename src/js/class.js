@@ -6,6 +6,7 @@ export class Hero {
         this.movex = 0;
         this.speed = 11;
         this.direction = 'right';
+        this.attackDamage = 1000;
     }
 
     keyMotion() {
@@ -120,6 +121,7 @@ export class Bullet {
                 if(bulletComProp.arr[i] === this) {
                     bulletComProp.arr.splice(i, 1);
                     this.el.remove();
+                    monster.updateHp();
                 }
             }
         }
@@ -167,5 +169,10 @@ export class Monster {
             top: gameProp.screenHeight - this.el.getBoundingClientRect().top,
             bottom: gameProp.screenHeight - this.el.getBoundingClientRect().top - this.el.getBoundingClientRect().height
         }
+    }
+
+    updateHp() {
+        this.hpValue = Math.max(0, this.hpValue - hero.attackDamage);
+        this.el.children[0].innerText = this.hpValue;
     }
 }
