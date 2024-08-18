@@ -9,6 +9,10 @@ export const key = {
     }
 }
 
+export const allMonsterComProp = {
+    arr: []
+};
+
 export const bulletComProp = {
     launch: false,
     arr: []
@@ -71,7 +75,8 @@ export let monster;
 
 const init = () => {
     hero = new Hero('.hero');
-    monster = new Monster(500, 9000);
+    allMonsterComProp.arr[0] = new Monster(700, 7777);
+    allMonsterComProp.arr[1] = new Monster(1500, 5555);
     loadImg();
     windowEvent();
     renderGame();

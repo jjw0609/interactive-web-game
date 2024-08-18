@@ -1,4 +1,4 @@
-import {bulletComProp, gameProp, hero, key, monster} from "./game.js";
+import {allMonsterComProp, bulletComProp, gameProp, hero, key, monster} from "./game.js";
 
 export class Hero {
     constructor(el) {
@@ -116,12 +116,15 @@ export class Bullet {
     }
 
     crashBullet() {
-        if(this.position().left > monster.position().left && this.position().right < monster.position().right) {
-            for(let i=0 ; i<bulletComProp.arr.length; i++) {
-                if(bulletComProp.arr[i] === this) {
-                    bulletComProp.arr.splice(i, 1);
-                    this.el.remove();
-                    monster.updateHp();
+
+        for(let j=0 ; j<allMonsterComProp.arr.length ; j++) {
+            if(this.position().left > allMonsterComProp.arr[j].position().left && this.position().right < allMonsterComProp.arr[j].position().right) {
+                for(let i=0 ; i<bulletComProp.arr.length; i++) {
+                    if(bulletComProp.arr[i] === this) {
+                        bulletComProp.arr.splice(i, 1);
+                        this.el.remove();
+                        allMonsterComProp.arr[j].updateHp();
+                    }
                 }
             }
         }
