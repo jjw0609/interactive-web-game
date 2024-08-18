@@ -115,7 +115,7 @@ export class Bullet {
         }
     }
 
-    crashBullet() {
+    crashBullett() {
 
         for(let j=0 ; j<allMonsterComProp.arr.length ; j++) {
             if(this.position().left > allMonsterComProp.arr[j].position().left && this.position().right < allMonsterComProp.arr[j].position().right) {
@@ -123,7 +123,7 @@ export class Bullet {
                     if(bulletComProp.arr[i] === this) {
                         bulletComProp.arr.splice(i, 1);
                         this.el.remove();
-                        allMonsterComProp.arr[j].updateHp();
+                        allMonsterComProp.arr[j].updateHp(j);
                     }
                 }
             }
@@ -174,8 +174,18 @@ export class Monster {
         }
     }
 
-    updateHp() {
+    updateHp(index) {
         this.hpValue = Math.max(0, this.hpValue - hero.attackDamage);
         this.el.children[0].innerText = this.hpValue;
+
+        if(this.hpValue === 0) {
+            this.dead(index);
+        }
+    }
+
+    dead(index) {1
+        this.el.classList.add('remove');
+        allMonsterComProp.arr.splice(index, 1);
+        setTimeout(() => this.el.remove(), 200);
     }
 }
