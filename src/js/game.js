@@ -34,6 +34,11 @@ const renderGame = () => {
     bulletComProp.arr.forEach((arr, i) => {
         arr.moveBullet();
     })
+
+    allMonsterComProp.arr.forEach((arr, i) => {
+        arr.moveMonster();
+    })
+
     window.requestAnimationFrame(renderGame);
 }
 
