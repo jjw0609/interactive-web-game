@@ -115,7 +115,7 @@ export class Bullet {
         }
     }
 
-    crashBullett() {
+    crashBullet() {
 
         for(let j=0 ; j<allMonsterComProp.arr.length ; j++) {
             if(this.position().left > allMonsterComProp.arr[j].position().left && this.position().right < allMonsterComProp.arr[j].position().right) {
@@ -151,14 +151,16 @@ export class Monster {
         this.hpNode = document.createElement('div');
         this.hpNode.className = 'hp';
         this.hpValue = hp;
-        this.hpTextNode = document.createTextNode(this.hpValue);
+        this.defaultHpValue = hp;
+        this.hpInner = document.createElement('span');
+        this.progress = 0;
         this.positionX = positionX;
 
         this.init();
     }
 
     init() {
-        this.hpNode.appendChild(this.hpTextNode);
+        this.hpNode.appendChild(this.hpInner);
         this.el.appendChild(this.hpNode);
         this.el.appendChild(this.elChildren);
         this.parentNode.appendChild(this.el);
@@ -176,7 +178,8 @@ export class Monster {
 
     updateHp(index) {
         this.hpValue = Math.max(0, this.hpValue - hero.attackDamage);
-        this.el.children[0].innerText = this.hpValue;
+        this.progress = this.hpValue / this.defaultHpValue * 100;
+        this.el.children[0].children[0].style.width = this.progress + '%';
 
         if(this.hpValue === 0) {
             this.dead(index);
