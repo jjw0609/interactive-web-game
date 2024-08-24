@@ -156,7 +156,7 @@ export class Monster {
         this.progress = 0;
         this.positionX = positionX;
         this.moveX = 0;
-        this.speed = 1;
+        this.speed = 10;
 
         this.init();
     }
