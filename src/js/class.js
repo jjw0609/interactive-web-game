@@ -7,6 +7,9 @@ export class Hero {
         this.speed = 11;
         this.direction = 'right';
         this.attackDamage = 1000;
+        this.hpProgress = 0;
+        this.hpValue = 10000;
+        this.defaultHpValue = this.hpValue;
     }
 
     keyMotion() {
@@ -62,6 +65,14 @@ export class Hero {
             width: this.el.offsetWidth,
             height: this.el.offsetHeight
         }
+    }
+
+    updateHp(monsterDamage) {
+        this.hpValue = Math.max(0, this.hpValue - monsterDamage);
+        this.hpProgress = this.hpValue / this.defaultHpValue * 100;
+
+        const heroHpBox = document.querySelector('.state_box .hp span');
+        heroHpBox.style.width = this.hpProgress + '%';
     }
 }
 
@@ -156,7 +167,8 @@ export class Monster {
         this.progress = 0;
         this.positionX = positionX;
         this.moveX = 0;
-        this.speed = 10;
+        this.speed = 1;
+        this.crashDamage = 100;
 
         this.init();
     }
@@ -203,5 +215,15 @@ export class Monster {
         }
 
         this.el.style.transform =`translateX(${this.moveX}px)`;
+        this.crash();
+    }
+
+    crash() {
+        let rightDiff = 30;
+        let leftDiff = 90;
+
+        if(hero.position().right - rightDiff > this.position().left && hero.position().left + leftDiff < this.position().right) {
+            hero.updateHp(this.crashDamage);
+        }
     }
 }
