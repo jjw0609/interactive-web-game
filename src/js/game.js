@@ -24,7 +24,8 @@ const gameBackground = {
 
 export const gameProp = {
     screenWidth: window.innerWidth,
-    screenHeight: window.innerHeight
+    screenHeight: window.innerHeight,
+    gameOver: false
 };
 
 const renderGame = () => {
@@ -42,6 +43,13 @@ const renderGame = () => {
     window.requestAnimationFrame(renderGame);
 }
 
+export const endGame = () => {
+    gameProp.gameOver = true;
+    key.keyDown.left = false;
+    key.keyDown.right = false;
+    document.querySelector('.game_over').classList.add('active');
+}
+
 const setGameBackground = () => {
     let parallaxValue = Math.min(0, (hero.movex - gameProp.screenWidth / 3) * -1);
 
@@ -50,7 +58,7 @@ const setGameBackground = () => {
 
 const windowEvent = () => {
     window.addEventListener('keydown', e => {
-        key.keyDown[key.keyValue[e.which]] = true;
+        if(!gameProp.gameOver) key.keyDown[key.keyValue[e.which]] = true;
     });
 
     window.addEventListener('keyup', e => {

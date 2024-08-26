@@ -1,4 +1,4 @@
-import {allMonsterComProp, bulletComProp, gameProp, hero, key, monster} from "./game.js";
+import {allMonsterComProp, bulletComProp, endGame, gameProp, hero, key, monster} from "./game.js";
 
 export class Hero {
     constructor(el) {
@@ -87,6 +87,7 @@ export class Hero {
 
     dead() {
         hero.el.classList.add('dead');
+        endGame();
     }
 }
 
@@ -182,7 +183,7 @@ export class Monster {
         this.positionX = positionX;
         this.moveX = 0;
         this.speed = 1;
-        this.crashDamage = 100;
+        this.crashDamage = 70;
 
         this.init();
     }
