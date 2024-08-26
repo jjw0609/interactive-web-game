@@ -73,6 +73,20 @@ export class Hero {
 
         const heroHpBox = document.querySelector('.state_box .hp span');
         heroHpBox.style.width = this.hpProgress + '%';
+        this.crash();
+
+        if(this.hpValue === 0) {
+            this.dead();
+        }
+    }
+
+    crash() {
+        this.el.classList.add('crash');
+        setTimeout(() => this.el.classList.remove('crash'), 400);
+    }
+
+    dead() {
+        hero.el.classList.add('dead');
     }
 }
 
