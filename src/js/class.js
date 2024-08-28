@@ -149,6 +149,7 @@ export class Bullet {
                     if(bulletComProp.arr[i] === this) {
                         bulletComProp.arr.splice(i, 1);
                         this.el.remove();
+                        this.damageView(allMonsterComProp.arr[j]);
                         allMonsterComProp.arr[j].updateHp(j);
                     }
                 }
@@ -163,6 +164,23 @@ export class Bullet {
                 }
             }
         }
+    }
+
+    damageView(monster) {
+        this.parentNode = document.querySelector('.game_app');
+        this.textDamageNode = document.createElement('div');
+        this.textDamageNode.className = 'text_damage';
+        this.textDamage = document.createTextNode(hero.attackDamage);
+        this.textDamageNode.appendChild(this.textDamage);
+        this.parentNode.appendChild(this.textDamageNode);
+
+        let textPosition = Math.random() * -100;
+        let damagex = monster.position().left + textPosition;
+        let damagey = monster.position().top;
+
+        this.textDamageNode.style.transform = `translate(${damagex}px, ${-damagey}px)`;
+
+        setTimeout(() => this.textDamageNode.remove(), 500);
     }
 }
 
