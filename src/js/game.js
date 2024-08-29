@@ -1,4 +1,5 @@
 import {Hero, Monster} from "./class.js";
+import {greenMon, pinkMon, yellowMon} from "./monster.js";
 
 export const key = {
     keyDown: {},
@@ -88,8 +89,9 @@ export let monster;
 
 const init = () => {
     hero = new Hero('.hero');
-    allMonsterComProp.arr[0] = new Monster(700, 7777);
-    allMonsterComProp.arr[1] = new Monster(1500, 5555);
+    allMonsterComProp.arr[0] = new Monster(pinkMon, gameProp.screenWidth + 700);
+    allMonsterComProp.arr[1] = new Monster(yellowMon, gameProp.screenWidth + 1400);
+    allMonsterComProp.arr[2] = new Monster(greenMon, gameProp.screenWidth + 2100);
     loadImg();
     windowEvent();
     renderGame();

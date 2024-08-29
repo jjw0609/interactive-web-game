@@ -9,6 +9,7 @@ const webpackMode = process.env.NODE_ENV || 'development';
 module.exports = {
     mode: webpackMode,
     entry: {
+        monster: './src/js/monster.js',
         class: './src/js/class.js',
         game: './src/js/game.js'
     },

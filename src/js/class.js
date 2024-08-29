@@ -6,7 +6,7 @@ export class Hero {
         this.movex = 0;
         this.speed = 11;
         this.direction = 'right';
-        this.attackDamage = 1000;
+        this.attackDamage = 10000;
         this.hpProgress = 0;
         this.hpValue = 10000;
         this.defaultHpValue = this.hpValue;
@@ -192,22 +192,22 @@ export class Bullet {
 
 
 export class Monster {
-    constructor(positionX, hp) {
+    constructor(property, positionX) {
         this.parentNode = document.querySelector('.game');
         this.el = document.createElement('div');
-        this.el.className = 'monster_box';
+        this.el.className = `monster_box ${property.name}`;
         this.elChildren = document.createElement('div');
         this.elChildren.className = 'monster';
         this.hpNode = document.createElement('div');
         this.hpNode.className = 'hp';
-        this.hpValue = hp;
-        this.defaultHpValue = hp;
+        this.hpValue = property.hpValue;
+        this.defaultHpValue = property.hpValue;
         this.hpInner = document.createElement('span');
         this.progress = 0;
         this.positionX = positionX;
         this.moveX = 0;
-        this.speed = 10;
-        this.crashDamage = 70;
+        this.speed = property.speed;
+        this.crashDamage = property.crashDamage;
 
         this.init();
     }
