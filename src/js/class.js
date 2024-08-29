@@ -10,6 +10,7 @@ export class Hero {
         this.hpProgress = 0;
         this.hpValue = 10000;
         this.defaultHpValue = this.hpValue;
+        this.realDamage = 0;
     }
 
     keyMotion() {
@@ -89,6 +90,10 @@ export class Hero {
         hero.el.classList.add('dead');
         endGame();
     }
+
+    hitDamage() {
+        this.realDamage = this.attackDamage - Math.round(Math.random() * this.attackDamage * 0.1);
+    }
 }
 
 export class Bullet {
@@ -147,6 +152,7 @@ export class Bullet {
             if(this.position().left > allMonsterComProp.arr[j].position().left && this.position().right < allMonsterComProp.arr[j].position().right) {
                 for(let i=0 ; i<bulletComProp.arr.length; i++) {
                     if(bulletComProp.arr[i] === this) {
+                        hero.hitDamage();
                         bulletComProp.arr.splice(i, 1);
                         this.el.remove();
                         this.damageView(allMonsterComProp.arr[j]);
@@ -170,7 +176,7 @@ export class Bullet {
         this.parentNode = document.querySelector('.game_app');
         this.textDamageNode = document.createElement('div');
         this.textDamageNode.className = 'text_damage';
-        this.textDamage = document.createTextNode(hero.attackDamage);
+        this.textDamage = document.createTextNode(hero.realDamage);
         this.textDamageNode.appendChild(this.textDamage);
         this.parentNode.appendChild(this.textDamageNode);
 
@@ -200,7 +206,7 @@ export class Monster {
         this.progress = 0;
         this.positionX = positionX;
         this.moveX = 0;
-        this.speed = 1;
+        this.speed = 10;
         this.crashDamage = 70;
 
         this.init();
@@ -224,7 +230,7 @@ export class Monster {
     }
 
     updateHp(index) {
-        this.hpValue = Math.max(0, this.hpValue - hero.attackDamage);
+        this.hpValue = Math.max(0, this.hpValue - hero.realDamage);
         this.progress = this.hpValue / this.defaultHpValue * 100;
         this.el.children[0].children[0].style.width = this.progress + '%';
 
