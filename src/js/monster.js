@@ -18,3 +18,24 @@ export const greenMon = {
     speed: 10,
     crashDamage: 300
 };
+
+export const greenMonBoss = {
+    name: 'green_mon_boss',
+    hpValue: 800000,
+    speed: 10,
+    crashDamage: 1000
+};
+
+export const yellowMonBoss = {
+    name: 'yellow_mon_boss',
+    hpValue: 1800000,
+    speed: 10,
+    crashDamage: 2000
+};
+
+export const pinkMonBoss = {
+    name: 'pink_mon_boss',
+    hpValue: 5200000,
+    speed: 10,
+    crashDamage: 1000
+};
