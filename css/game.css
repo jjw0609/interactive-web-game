@@ -54,6 +54,20 @@
 .monster_box.yellow_mon .monster {background-image: url('../images/monster/monster_yellow_run.png');}
 .monster_box.pink_mon .monster {background-image: url('../images/monster/monster_pink_run.png');}
 
+@keyframes monster_run_boss {
+    from {background-position-x: 0px;}
+    to {background-position-x: -3600px;}
+}
+
+.monster_box.green_mon_boss {width: 450px; height: 472px;}
+.monster_box.green_mon_boss .monster {background-image: url('../images/monster/monster_green_run.png'); background-size: 3600px 472px; animation: monster_run_boss 1s infinite steps(8);}
+
+.monster_yellow {width: 450px; height: 472px;}
+.monster_yellow .monster {background-image: url('../images/monster/monster_yellow_run.png'); background-size: 3600px 472px; animation: monster_run_boss 1s infinite steps(8);}
+
+.monster_box.pink_mon_boss {width: 450px; height: 472px;}
+.monster_box.pink_mon_boss .monster {background-image: url('../images/monster/monster_pink_run.png'); background-size: 3600px 472px; animation: monster_run_boss 1s infinite steps(8);}
+
 @keyframes textDamage {
     0% {opacity: 0; bottom:0;}
     70% {opacity: 1; bottom:50px;}
