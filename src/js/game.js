@@ -1,4 +1,4 @@
-import {Hero, Monster} from "./class.js";
+import {Hero, Monster, Stage} from "./class.js";
 import {greenMon, greenMonBoss, pinkMon, pinkMonBoss, yellowMon, yellowMonBoss} from "./monster.js";
 
 export const key = {
@@ -21,6 +21,10 @@ export const bulletComProp = {
 
 const gameBackground = {
     gameBox: document.querySelector('.game')
+}
+
+export const stageInfo = {
+    stage: []
 }
 
 export const gameProp = {
@@ -89,17 +93,7 @@ export let monster;
 
 const init = () => {
     hero = new Hero('.hero');
-    // allMonsterComProp.arr[0] = new Monster(greenMonBoss, gameProp.screenWidth + 700);
-    // allMonsterComProp.arr[1] = new Monster(yellowMonBoss, gameProp.screenWidth + 1400);
-    // allMonsterComProp.arr[2] = new Monster(pinkMonBoss, gameProp.screenWidth + 2100);
-
-    for(let i=0 ; i<=10 ; i++) {
-        if(i === 10) {
-            allMonsterComProp.arr[i] = new Monster(greenMonBoss, gameProp.screenWidth + 600 * i);
-        } else {
-            allMonsterComProp.arr[i] = new Monster(greenMon, gameProp.screenWidth + 700 * i);
-        }
-    }
+    stageInfo.stage = new Stage();
 
     loadImg();
     windowEvent();

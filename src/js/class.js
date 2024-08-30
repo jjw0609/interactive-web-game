@@ -1,4 +1,40 @@
 import {allMonsterComProp, bulletComProp, endGame, gameProp, hero, key, monster} from "./game.js";
+import {greenMon, greenMonBoss} from "./monster.js";
+
+
+export class Stage {
+    constructor() {
+        this.stageStart();
+    }
+
+    stageStart() {
+        this.stageGuide();
+        this.callMonster();
+    }
+
+    stageGuide() {
+        this.parentNode = document.querySelector('.game_app');
+        this.textBox = document.createElement('div');
+        this.textBox.className = 'stage_box';
+        this.textNode = document.createTextNode('START LEVEL1');
+        this.textBox.appendChild(this.textNode);
+        this.parentNode.appendChild(this.textBox);
+
+        setTimeout(() => this.textBox.remove(), 1500);
+    }
+
+    callMonster() {
+        for(let i=0 ; i<=10 ; i++) {
+            if(i === 10) {
+                allMonsterComProp.arr[i] = new Monster(greenMonBoss, gameProp.screenWidth + 600 * i);
+            } else {
+                allMonsterComProp.arr[i] = new Monster(greenMon, gameProp.screenWidth + 700 * i);
+            }
+        }
+    }
+}
+
+
 
 export class Hero {
     constructor(el) {
@@ -8,7 +44,7 @@ export class Hero {
         this.direction = 'right';
         this.attackDamage = 10000;
         this.hpProgress = 0;
-        this.hpValue = 10000;
+        this.hpValue = 1000000;
         this.defaultHpValue = this.hpValue;
         this.realDamage = 0;
     }
