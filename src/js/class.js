@@ -1,5 +1,5 @@
-import {allMonsterComProp, bulletComProp, endGame, gameProp, hero, key, monster} from "./game.js";
-import {greenMon, greenMonBoss} from "./monster.js";
+import {allMonsterComProp, bulletComProp, endGame, gameProp, hero, key, monster, stageInfo} from "./game.js";
+import {greenMon} from "./monster.js";
 
 
 export class Stage {
@@ -31,9 +31,9 @@ export class Stage {
     callMonster() {
         for(let i=0 ; i<=10 ; i++) {
             if(i === 10) {
-                allMonsterComProp.arr[i] = new Monster(greenMonBoss, hero.movex + gameProp.screenWidth + 600 * i);
+                allMonsterComProp.arr[i] = new Monster(stageInfo.monster[this.level].bossMon, hero.movex + gameProp.screenWidth + 600 * i);
             } else {
-                allMonsterComProp.arr[i] = new Monster(greenMon, hero.movex + gameProp.screenWidth + 700 * i);
+                allMonsterComProp.arr[i] = new Monster(stageInfo.monster[this.level].defaultMon, hero.movex + gameProp.screenWidth + 700 * i);
             }
         }
     }
@@ -42,8 +42,14 @@ export class Stage {
         if(allMonsterComProp.arr.length === 0 && this.isStart) {
             this.isStart = false;
             this.level++;
-            this.stageGuide('CLEAR!!');
-            this.stageStart();
+
+            if(this.level < stageInfo.monster.length) {
+                this.stageGuide('CLEAR!!');
+                this.stageStart();
+                hero.heroUpgrade();
+            } else {
+                this.stageGuide('ALL CLEAR!!');
+            }
         }
     }
 }
@@ -56,7 +62,7 @@ export class Hero {
         this.movex = 0;
         this.speed = 11;
         this.direction = 'right';
-        this.attackDamage = 55510000;
+        this.attackDamage = 20000;
         this.hpProgress = 0;
         this.hpValue = 5510000;
         this.defaultHpValue = this.hpValue;
@@ -143,6 +149,11 @@ export class Hero {
 
     hitDamage() {
         this.realDamage = this.attackDamage - Math.round(Math.random() * this.attackDamage * 0.1);
+    }
+
+    heroUpgrade() {
+        this.speed += 1.3;
+        this.attackDamage += 15000;
     }
 }
 

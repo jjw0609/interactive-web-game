@@ -24,7 +24,12 @@ const gameBackground = {
 }
 
 export const stageInfo = {
-    stage: []
+    stage: [],
+    monster: [
+        {defaultMon: greenMon, bossMon: greenMonBoss},
+        {defaultMon: yellowMon, bossMon: yellowMonBoss},
+        {defaultMon: pinkMon, bossMon: pinkMonBoss}
+    ]
 }
 
 export const gameProp = {
