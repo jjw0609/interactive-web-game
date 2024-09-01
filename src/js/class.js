@@ -269,6 +269,7 @@ export class Monster {
         this.moveX = 0;
         this.speed = property.speed;
         this.crashDamage = property.crashDamage;
+        this.score = property.score;
 
         this.init();
     }
@@ -304,6 +305,7 @@ export class Monster {
         this.el.classList.add('remove');
         allMonsterComProp.arr.splice(index, 1);
         setTimeout(() => this.el.remove(), 200);
+        this.setScore();
     }
 
     moveMonster() {
@@ -325,5 +327,10 @@ export class Monster {
         if(hero.position().right - rightDiff > this.position().left && hero.position().left + leftDiff < this.position().right) {
             hero.updateHp(this.crashDamage);
         }
+    }
+
+    setScore() {
+        stageInfo.totalScore += this.score;
+        document.querySelector('.score_box').innerText = stageInfo.totalScore;
     }
 }
