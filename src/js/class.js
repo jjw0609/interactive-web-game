@@ -62,9 +62,9 @@ export class Hero {
         this.movex = 0;
         this.speed = 11;
         this.direction = 'right';
-        this.attackDamage = 20000;
+        this.attackDamage = 10000;
         this.hpProgress = 0;
-        this.hpValue = 5510000;
+        this.hpValue = 100000;
         this.defaultHpValue = this.hpValue;
         this.realDamage = 0;
     }
