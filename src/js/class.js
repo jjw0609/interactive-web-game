@@ -67,6 +67,10 @@ export class Hero {
         this.hpValue = 100000;
         this.defaultHpValue = this.hpValue;
         this.realDamage = 0;
+        this.slideSpeed = 14;
+        this.slideTime = 0;
+        this.slideMaxTime = 30;
+        this.slideDown = false;
     }
 
     keyMotion() {
@@ -96,6 +100,26 @@ export class Hero {
             }
         }
 
+        if(key.keyDown['slide']) {
+            if(!this.slideDown) {
+                this.el.classList.add('slide');
+
+                if(this.direction === 'right') {
+                    this.movex = this.movex + this.slideSpeed;
+                } else {
+                    this.movex = this.movex - this.slideSpeed;
+                }
+
+                if(this.slideTime > this.slideMaxTime) {
+                    this.el.classList.remove('slide');
+                    this.slideDown = true;
+                }
+
+                this.slideTime += 1;
+            }
+
+        }
+
         if(!key.keyDown['left'] && !key.keyDown['right']) {
             this.el.classList.remove('run');
         }
@@ -103,6 +127,12 @@ export class Hero {
         if(!key.keyDown['attack']) {
             this.el.classList.remove('attack');
             bulletComProp.launch = false;
+        }
+
+        if(!key.keyDown['slide']) {
+            this.el.classList.remove('slide');
+            this.slideDown = false;
+            this.slideTime = 0;
         }
 
         this.el.parentNode.style.transform = `translateX(${this.movex}px)`;
