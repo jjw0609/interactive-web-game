@@ -3,7 +3,8 @@ export const pinkMon = {
     hpValue: 200000,
     speed: 3,
     crashDamage: 300,
-    score: 3000
+    score: 3000,
+    exp: 3000
 };
 
 export const yellowMon = {
@@ -11,7 +12,8 @@ export const yellowMon = {
     hpValue: 84000,
     speed: 3,
     crashDamage: 300,
-    score: 2000
+    score: 2000,
+    exp: 2000
 };
 
 export const greenMon = {
@@ -19,7 +21,8 @@ export const greenMon = {
     hpValue: 44000,
     speed: 3,
     crashDamage: 300,
-    score: 1000
+    score: 1000,
+    exp: 1000
 };
 
 export const greenMonBoss = {
@@ -27,7 +30,8 @@ export const greenMonBoss = {
     hpValue: 800000,
     speed: 2,
     crashDamage: 1000,
-    score: 10000
+    score: 10000,
+    exp: 10000
 };
 
 export const yellowMonBoss = {
@@ -35,7 +39,8 @@ export const yellowMonBoss = {
     hpValue: 1800000,
     speed: 2,
     crashDamage: 2000,
-    score: 20000
+    score: 20000,
+    exp: 20000
 };
 
 export const pinkMonBoss = {
@@ -43,5 +48,6 @@ export const pinkMonBoss = {
     hpValue: 5200000,
     speed: 1,
     crashDamage: 1000,
-    score: 30000
+    score: 30000,
+    exp: 30000
 };

@@ -64,13 +64,17 @@ export class Hero {
         this.direction = 'right';
         this.attackDamage = 10000;
         this.hpProgress = 0;
-        this.hpValue = 100000;
+        this.hpValue = 200000;
         this.defaultHpValue = this.hpValue;
         this.realDamage = 0;
         this.slideSpeed = 14;
         this.slideTime = 0;
         this.slideMaxTime = 30;
         this.slideDown = false;
+        this.level = 1;
+        this.exp = 0;
+        this.maxExp = 3000;
+        this.expProgress = 0;
     }
 
     keyMotion() {
@@ -182,8 +186,30 @@ export class Hero {
     }
 
     heroUpgrade() {
-        this.speed += 1.3;
-        this.attackDamage += 15000;
+        this.attackDamage += 5000;
+    }
+
+    updateExp(exp) {
+        this.exp += exp;
+        this.expProgress = this.exp / this.maxExp * 100;
+        document.querySelector('.hero_state .exp span').style.width = `${this.expProgress}%`;
+
+        if(this.exp >= this.maxExp) {
+            this.levelUp();
+        }
+    }
+
+    levelUp() {
+        this.level += 1;
+        this.exp = 0;
+        this.maxExp = this.maxExp + this.level * 1000;
+        document.querySelector('.level_box strong').innerText = this.level;
+        const levelGuide = document.querySelector('.hero_box .level_up');
+        levelGuide.classList.add('active');
+
+        setTimeout(() => levelGuide.classList.remove('active'), 1000);
+        this.updateExp(this.exp);
+        this.heroUpgrade();
     }
 }
 
@@ -300,6 +326,7 @@ export class Monster {
         this.speed = property.speed;
         this.crashDamage = property.crashDamage;
         this.score = property.score;
+        this.exp = property.exp;
 
         this.init();
     }
@@ -336,6 +363,7 @@ export class Monster {
         allMonsterComProp.arr.splice(index, 1);
         setTimeout(() => this.el.remove(), 200);
         this.setScore();
+        this.setExp();
     }
 
     moveMonster() {
@@ -362,5 +390,9 @@ export class Monster {
     setScore() {
         stageInfo.totalScore += this.score;
         document.querySelector('.score_box').innerText = stageInfo.totalScore;
+    }
+
+    setExp() {
+        hero.updateExp(this.exp);
     }
 }
