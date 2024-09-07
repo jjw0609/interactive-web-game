@@ -1,4 +1,4 @@
-import {Hero, Monster, Stage} from "./class.js";
+import {Hero, Monster, Npc, Stage} from "./class.js";
 import {greenMon, greenMonBoss, pinkMon, pinkMonBoss, yellowMon, yellowMonBoss} from "./monster.js";
 
 export const key = {
@@ -44,6 +44,8 @@ export const gameProp = {
 const renderGame = () => {
     hero.keyMotion();
     setGameBackground();
+
+    npcONe.crash();
 
     bulletComProp.arr.forEach((arr, i) => {
         arr.moveBullet();
@@ -100,10 +102,12 @@ const loadImg = () => {
 
 export let hero;
 export let monster;
+export let npcONe;
 
 const init = () => {
     hero = new Hero('.hero');
     stageInfo.stage = new Stage();
+    npcONe = new Npc();
 
     loadImg();
     windowEvent();

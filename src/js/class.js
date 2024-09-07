@@ -2,6 +2,42 @@ import {allMonsterComProp, bulletComProp, endGame, gameProp, hero, key, monster,
 import {greenMon} from "./monster.js";
 
 
+
+
+export class Npc {
+    constructor() {
+        this.parentNode = document.querySelector('.game');
+        this.el = document.createElement('div');
+        this.el.className = 'npc_box';
+        this.npcCrash = false;
+        this.init();
+    }
+
+    init() {
+        const npcTalk = `
+            <div class="talk_box">
+                <p>큰일이야..<br>사람들이 좀비로<br>변하고 있어..<br><span>대화 Enter</span></p>
+            </div>
+            <div class="npc"></div>
+        `;
+
+        this.el.innerHTML = npcTalk;
+        this.parentNode.appendChild(this.el);
+    }
+
+    position() {
+
+    }
+
+    crash() {
+        if(hero.position().right > this.position().left && hero.position().left < this.position().right) {
+            this.npcCrash = true;
+        } else {
+            this.npcCrash = false;
+        }
+    }
+}
+
 export class Stage {
     constructor() {
         this.level = 0;
