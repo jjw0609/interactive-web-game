@@ -10,6 +10,9 @@ export class Npc {
         this.el = document.createElement('div');
         this.el.className = 'npc_box';
         this.npcCrash = false;
+        this.talkOn = false;
+        this.modal = document.querySelector('.quest_modal');
+
         this.init();
     }
 
@@ -26,7 +29,12 @@ export class Npc {
     }
 
     position() {
-
+        return {
+            left: this.el.getBoundingClientRect().left,
+            right: this.el.getBoundingClientRect().right,
+            top: gameProp.screenHeight - this.el.getBoundingClientRect().top,
+            bottom: gameProp.screenHeight - this.el.getBoundingClientRect().top - this.el.getBoundingClientRect().height
+        };
     }
 
     crash() {
@@ -34,6 +42,16 @@ export class Npc {
             this.npcCrash = true;
         } else {
             this.npcCrash = false;
+        }
+    }
+
+    talk() {
+        if(!this.talkOn && this.npcCrash) {
+            this.talkOn = true;
+            this.modal.classList.add('active');
+        } else if(this.talkOn) {
+            this.talkOn = false;
+            this.modal.classList.remove('active');
         }
     }
 }
@@ -196,7 +214,7 @@ export class Hero {
             right: this.el.getBoundingClientRect().right,
             top: gameProp.screenHeight - this.el.getBoundingClientRect().top,
             bottom: gameProp.screenHeight - this.el.getBoundingClientRect().top - this.el.getBoundingClientRect().height
-        }
+        };
     }
 
     size() {

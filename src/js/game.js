@@ -7,7 +7,8 @@ export const key = {
         37: 'left',
         39: 'right',
         88: 'attack',
-        67: 'slide'
+        67: 'slide',
+        13: 'enter'
     }
 }
 
@@ -76,6 +77,10 @@ const setGameBackground = () => {
 const windowEvent = () => {
     window.addEventListener('keydown', e => {
         if(!gameProp.gameOver) key.keyDown[key.keyValue[e.which]] = true;
+
+        if(key.keyDown['enter']) {
+            npcONe.talk();
+        }
     });
 
     window.addEventListener('keyup', e => {
