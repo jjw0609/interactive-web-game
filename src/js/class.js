@@ -48,11 +48,26 @@ export class Npc {
     talk() {
         if(!this.talkOn && this.npcCrash) {
             this.talkOn = true;
+            this.quest();
             this.modal.classList.add('active');
         } else if(this.talkOn) {
             this.talkOn = false;
             this.modal.classList.remove('active');
         }
+    }
+
+    quest() {
+        const text = `
+            <figure class="npc_img">
+                <img src="./images/npc.png"/>
+            </figure>
+            <p>
+                마을에 몬스터가 출몰해 주민들을 좀비로 만들고 있어.. 몬스터를 사냥해 주민을 구하고 <span>레벨을 5이상</span>으로 만들어 힘을 증명한다면 좀비왕을 물리칠 수 있도록 내 힘을
+                빌려줄게!!
+            </p>
+        `;
+        const modalInner = document.querySelector('.quest_modal .inner_box .quest_talk');
+        modalInner.innerHTML = text;
     }
 }
 
