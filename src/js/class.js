@@ -12,6 +12,8 @@ export class Npc {
         this.npcCrash = false;
         this.talkOn = false;
         this.modal = document.querySelector('.quest_modal');
+        this.questStart = false;
+        this.questEnd = false;
 
         this.init();
     }
@@ -57,14 +59,33 @@ export class Npc {
     }
 
     quest() {
+        const message = {
+            start: '마을에 몬스터가 출몰해 주민들을 좀비로 만들고 있어.. 몬스터를 사냥해 주민을 구하고 <span>레벨을 5이상</span>으로 만들어 힘을 증명한다면 좀비왕을 물리칠 수 있도록 내 힘을 빌려줄게!!',
+            ing: '이런 아직 레벨을 달성하지 못했구나..',
+            suc: '레벨을 달성했구나! 힘을 줄게!',
+            end: '고마워! 행운을 빌어!'
+        };
+
+        let messageState = '';
+
+        if(!this.questStart) {
+            messageState = message.start;
+            this.questStart = true;
+        } else if(this.questStart && !this.questEnd && hero.level < 5) {
+            messageState = message.ing;
+        } else if(this.questStart && !this.questEnd && hero.level >= 5) {
+            messageState = message.suc;
+            this.questEnd = true;
+            hero.heroUpgrade(50000);
+        } else if(this.questStart && this.questEnd) {
+            messageState = message.end;
+        }
+
         const text = `
             <figure class="npc_img">
                 <img src="./images/npc.png"/>
             </figure>
-            <p>
-                마을에 몬스터가 출몰해 주민들을 좀비로 만들고 있어.. 몬스터를 사냥해 주민을 구하고 <span>레벨을 5이상</span>으로 만들어 힘을 증명한다면 좀비왕을 물리칠 수 있도록 내 힘을
-                빌려줄게!!
-            </p>
+            <p>${messageState}</p>
         `;
         const modalInner = document.querySelector('.quest_modal .inner_box .quest_talk');
         modalInner.innerHTML = text;
@@ -277,8 +298,9 @@ export class Hero {
         this.realDamage = this.attackDamage - Math.round(Math.random() * this.attackDamage * 0.1);
     }
 
-    heroUpgrade() {
-        this.attackDamage += 5000;
+    heroUpgrade(upDamage) {
+        let damage = upDamage ?? 5000;0
+        this.attackDamage += damage;
     }
 
     updateExp(exp) {
