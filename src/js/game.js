@@ -1,5 +1,6 @@
 import {Hero, Monster, Npc, Stage} from "./class.js";
 import {greenMon, greenMonBoss, pinkMon, pinkMonBoss, yellowMon, yellowMonBoss} from "./monster.js";
+import {levelQuest} from "./quest.js";
 
 export const key = {
     keyDown: {},
@@ -112,7 +113,7 @@ export let npcONe;
 const init = () => {
     hero = new Hero('.hero');
     stageInfo.stage = new Stage();
-    npcONe = new Npc();
+    npcONe = new Npc(levelQuest);
 
     loadImg();
     windowEvent();
