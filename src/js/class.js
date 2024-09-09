@@ -1,5 +1,4 @@
 import {allMonsterComProp, bulletComProp, endGame, gameProp, hero, key, monster, stageInfo} from "./game.js";
-import {greenMon} from "./monster.js";
 
 
 
@@ -131,7 +130,7 @@ export class Hero {
     constructor(el) {
         this.el = document.querySelector(el);
         this.movex = 0;
-        this.speed = 11;
+        this.speed = 7;
         this.direction = 'right';
         this.attackDamage = 10000;
         this.hpProgress = 0;

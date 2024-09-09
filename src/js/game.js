@@ -1,6 +1,6 @@
 import {Hero, Monster, Npc, Stage} from "./class.js";
 import {greenMon, greenMonBoss, pinkMon, pinkMonBoss, yellowMon, yellowMonBoss} from "./monster.js";
-import {levelQuest} from "./quest.js";
+import {levelQuest, levelQuestTwo} from "./quest.js";
 
 export const key = {
     keyDown: {},
@@ -48,6 +48,7 @@ const renderGame = () => {
     setGameBackground();
 
     npcONe.crash();
+    npcTwo.crash();
 
     bulletComProp.arr.forEach((arr, i) => {
         arr.moveBullet();
@@ -81,6 +82,7 @@ const windowEvent = () => {
 
         if(key.keyDown['enter']) {
             npcONe.talk();
+            npcTwo.talk();
         }
     });
 
@@ -109,11 +111,13 @@ const loadImg = () => {
 export let hero;
 export let monster;
 export let npcONe;
+export let npcTwo;
 
 const init = () => {
     hero = new Hero('.hero');
     stageInfo.stage = new Stage();
     npcONe = new Npc(levelQuest);
+    npcTwo = new Npc(levelQuestTwo);
 
     loadImg();
     windowEvent();
