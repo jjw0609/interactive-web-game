@@ -1,5 +1,5 @@
 import {Hero, Monster, Npc, Stage} from "./class.js";
-import {greenMon, greenMonBoss, pinkMon, pinkMonBoss, yellowMon, yellowMonBoss} from "./monster.js";
+import {greenMon, greenMonBoss, pinkMon, pinkMonBoss, yellowMon, yellowMonBoss, zombieKing} from "./monster.js";
 import {levelQuest, levelQuestTwo} from "./quest.js";
 
 export const key = {
@@ -32,9 +32,10 @@ export const stageInfo = {
     monster: [
         {defaultMon: greenMon, bossMon: greenMonBoss},
         {defaultMon: yellowMon, bossMon: yellowMonBoss},
-        {defaultMon: pinkMon, bossMon: pinkMonBoss}
+        {defaultMon: pinkMon, bossMon: pinkMonBoss},
+        {defaultMon: pinkMon, bossMon: zombieKing}
     ],
-    callPosition: [1000, 5000, 9000]
+    callPosition: [1000, 5000, 9000, 12000]
 }
 
 export const gameProp = {

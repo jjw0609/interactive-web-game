@@ -51,3 +51,12 @@ export const pinkMonBoss = {
     score: 30000,
     exp: 30000
 };
+
+export const zombieKing = {
+    name: 'zombie_king',
+    hpValue: 15200000,
+    speed: 3,
+    crashDamage: 4000,
+    score: 300000,
+    exp: 50000
+};
